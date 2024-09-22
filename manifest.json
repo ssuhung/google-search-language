@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Google Search Language",
+  "version": "0.0",
+  "description": "Add custom buttons to Google search results to show results of particular languages",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "js": ["handler.js"],
+      "matches": [
+        "https://www.google.com/search*"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "preference.html",
+    "default_icon": "logo.png"
+  }
+}
