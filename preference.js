@@ -2,14 +2,14 @@ function loadCheckboxState() {
     let isChecked;
     chrome.storage.local.get('jp', function(result){
         isChecked = result.jp;
-        document.getElementById("japaneseCheckbox").checked = isChecked;
+        document.getElementsByClassName("option")[0].checked = isChecked;
     });
 }
 
 function saveCheckboxState() {
-    let checkbox = document.getElementById("japaneseCheckbox");
+    let checkbox = document.getElementsByClassName("option")[0];
     chrome.storage.local.set({"jp": checkbox.checked});
 }
 
-document.getElementById("japaneseCheckbox").addEventListener("change", saveCheckboxState);
+document.getElementsByClassName("option")[0].addEventListener("change", saveCheckboxState);
 window.onload = loadCheckboxState;
