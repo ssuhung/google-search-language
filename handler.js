@@ -38,7 +38,7 @@ async function loadCheckboxState() {
     link.style.lineHeight = "22px";
     link.style.cursor = "pointer";
     
-    let xpath = "//*[@id='tn_1']";
+    let xpath = "//*[@id='hdtbMenus']/div";
     let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
     let element = result.singleNodeValue;
     
