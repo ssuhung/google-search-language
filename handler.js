@@ -1,10 +1,10 @@
 function getLanguageOn() {
   return new Promise((resolve, reject) => {
-      chrome.storage.local.get('language_on', function(result) {
+      chrome.storage.local.get('jp', function(result) {
           if (chrome.runtime.lastError) {
               reject(chrome.runtime.lastError);
           } else {
-              resolve(result.language_on);
+              resolve(result.jp);
           }
       });
   });
