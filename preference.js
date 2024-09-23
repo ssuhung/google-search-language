@@ -1,15 +1,32 @@
 function loadCheckboxState() {
-    let isChecked;
-    chrome.storage.local.get('jp', function(result){
-        isChecked = result.jp;
-        document.getElementsByClassName("option")[0].checked = isChecked;
+    let option_list = document.getElementsByClassName("option");
+
+    for (let i = 0; i < option_list.length; i++) {
+        const element = option_list[i];
+        chrome.storage.local.get("languages", function(result){
+            let dict = result.languages;
+            if (element.id in dict) element.checked = true;
+        });
+    }
+}
+
+function saveCheckboxState(event) {
+    let ele = event.target;
+    let id = ele.id;
+
+    chrome.storage.local.get("languages", function(result){
+        let dict = result.languages;
+        if (ele.checked) dict[id] = 1;
+        else  delete dict[id];
+
+        chrome.storage.local.set({"languages": dict});
     });
 }
 
-function saveCheckboxState() {
-    let checkbox = document.getElementsByClassName("option")[0];
-    chrome.storage.local.set({"jp": checkbox.checked});
-}
 
-document.getElementsByClassName("option")[0].addEventListener("change", saveCheckboxState);
+let option_list = document.getElementsByClassName("option");
+for (let i = 0; i < option_list.length; i++) {
+    let option = option_list[i];
+    option.addEventListener("change", saveCheckboxState);
+}
 window.onload = loadCheckboxState;
