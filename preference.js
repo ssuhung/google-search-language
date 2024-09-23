@@ -16,7 +16,7 @@ function saveCheckboxState(event) {
 
     chrome.storage.local.get("languages", function(result){
         let dict = result.languages;
-        if (ele.checked) dict[id] = 1;
+        if (ele.checked) dict[id] = ele.name;
         else  delete dict[id];
 
         chrome.storage.local.set({"languages": dict});

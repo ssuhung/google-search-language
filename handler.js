@@ -1,12 +1,10 @@
-
-
 function getLanguageOn() {
   return new Promise((resolve, reject) => {
       chrome.storage.local.get("languages", function(result) {
           if (chrome.runtime.lastError) {
             reject(chrome.runtime.lastError);
           } else {
-            resolve(Object.keys(result.languages));
+            resolve(result.languages);
           }
       });
   });
@@ -73,12 +71,12 @@ function createHandler(lang){
 // Wait until the DOM is fully loaded
 // document.addEventListener("DOMContentLoaded", function() {
 async function loadCheckboxState() {
-  let languages = await getLanguageOn();
+  let language_dict = await getLanguageOn();
   
-  for (let i = 0; i < languages.length; i++) {
+  for (const [lang, lang_name] of Object.entries(language_dict)) {
     let link = document.createElement("a");
-    link.innerHTML = languages[i];
-    link.addEventListener("click", createHandler(languages[i]));
+    link.innerHTML = lang_name;
+    link.addEventListener("click", createHandler(lang));
     
     link.style.color = "#9e9e9e";
     link.style.display = "inline-block";
