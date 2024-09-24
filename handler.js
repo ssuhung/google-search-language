@@ -73,27 +73,29 @@ function createHandler(lang){
 async function loadCheckboxState() {
   let language_dict = await getLanguageOn();
   
-  for (const [lang, lang_name] of Object.entries(language_dict)) {
-    let link = document.createElement("a");
-    link.innerHTML = lang_name;
-    link.addEventListener("click", createHandler(lang));
-    
-    link.style.color = "#9e9e9e";
-    link.style.display = "inline-block";
-    link.style.position = "relative";
-    link.style.paddingTop = "0";
-    link.style.paddingBottom = "0";
-    link.style.paddingRight = "18px";
-    link.style.paddingLeft = "12px";
-    link.style.marginLeft = "12px";
-    link.style.lineHeight = "22px";
-    link.style.cursor = "pointer";
-    
-    let xpath = "//*[@id='hdtbMenus']/div";
-    let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-    let element = result.singleNodeValue;
-    
-    element.appendChild(link);
+  if (language_dict) {
+    for (const [lang, lang_name] of Object.entries(language_dict)) {
+      let link = document.createElement("a");
+      link.innerHTML = lang_name;
+      link.addEventListener("click", createHandler(lang));
+      
+      link.style.color = "#9e9e9e";
+      link.style.display = "inline-block";
+      link.style.position = "relative";
+      link.style.paddingTop = "0";
+      link.style.paddingBottom = "0";
+      link.style.paddingRight = "18px";
+      link.style.paddingLeft = "12px";
+      link.style.marginLeft = "12px";
+      link.style.lineHeight = "22px";
+      link.style.cursor = "pointer";
+      
+      let xpath = "//*[@id='hdtbMenus']/div";
+      let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+      let element = result.singleNodeValue;
+      
+      element.appendChild(link);
+    }
   }
 }
 

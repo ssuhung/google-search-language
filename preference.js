@@ -4,8 +4,13 @@ function loadCheckboxState() {
     for (let i = 0; i < option_list.length; i++) {
         const element = option_list[i];
         chrome.storage.local.get("languages", function(result){
-            let dict = result.languages;
-            if (element.id in dict) element.checked = true;
+            if (result.languages) {
+                let dict = result.languages;
+                if (element.id in dict) element.checked = true;
+            }
+            else {
+                chrome.storage.local.set({"languages": {}});
+            }
         });
     }
 }
