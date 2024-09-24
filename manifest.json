@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Google Search Language",
-  "version": "0.0",
+  "version": "0.1",
   "description": "Add custom buttons to Google search results to show results of particular languages",
   "permissions": [
     "activeTab",
