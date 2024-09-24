@@ -84,11 +84,13 @@ async function loadCheckboxState() {
       link.style.position = "relative";
       link.style.paddingTop = "0";
       link.style.paddingBottom = "0";
-      link.style.paddingRight = "18px";
+      link.style.paddingRight = "12px";
       link.style.paddingLeft = "12px";
       link.style.marginLeft = "12px";
       link.style.lineHeight = "22px";
       link.style.cursor = "pointer";
+      link.onmouseover = function() {link.style.color = "#ddd";}
+      link.onmouseleave = function() {link.style.color = "#9e9e9e";}
       
       let xpath = "//*[@id='hdtbMenus']/div";
       let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);

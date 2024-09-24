@@ -4,6 +4,7 @@ Add buttons to google search result page that can switch to results of certain l
 
 ## TODO
 
+* Adjust button color on bright theme
 * Launch on all google search urls (menifest.json)
 * Adjust button's CSS
 * Check if the language parameter exist before append
