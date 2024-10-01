@@ -1,6 +1,6 @@
 function getLanguageOn() {
   return new Promise((resolve, reject) => {
-      chrome.storage.local.get("languages", function(result) {
+      chrome.storage.sync.get("languages", function(result) {
           if (chrome.runtime.lastError) {
             reject(chrome.runtime.lastError);
           } else {

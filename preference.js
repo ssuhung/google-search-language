@@ -3,13 +3,13 @@ function loadCheckboxState() {
 
     for (let i = 0; i < option_list.length; i++) {
         const element = option_list[i];
-        chrome.storage.local.get("languages", function(result){
+        chrome.storage.sync.get("languages", function(result){
             if (result.languages) {
                 let dict = result.languages;
                 if (element.id in dict) element.checked = true;
             }
             else {
-                chrome.storage.local.set({"languages": {}});
+                chrome.storage.sync.set({"languages": {}});
             }
         });
     }
@@ -19,12 +19,12 @@ function saveCheckboxState(event) {
     let ele = event.target;
     let id = ele.id;
 
-    chrome.storage.local.get("languages", function(result){
+    chrome.storage.sync.get("languages", function(result){
         let dict = result.languages;
         if (ele.checked) dict[id] = ele.name;
         else  delete dict[id];
 
-        chrome.storage.local.set({"languages": dict});
+        chrome.storage.sync.set({"languages": dict});
     });
 }
 
