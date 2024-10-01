@@ -35,6 +35,12 @@
   ],
   "action": {
     "default_popup": "preference.html",
-    "default_icon": "logo.png"
-  }
+    "default_icon": "logo_128.png"
+  },
+  "icons": {
+    "16": "logo_16.png",
+    "32": "logo_32.png",
+    "48": "logo_48.png",
+    "128": "logo_128.png"
+   }
 }
