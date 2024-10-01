@@ -4,6 +4,10 @@ Add buttons to google search result page that can switch to results of certain l
 
 ![Function showcase](showcase.png)
 
+# Install
+
+For regular user, you can find it on [Chrome Web Store](https://chromewebstore.google.com/detail/google-search-language/imldhilgomaifdmkenenphbmhdloklmk?pli=1)
+
 ## TODO
 
 * Adjust button color on bright theme
