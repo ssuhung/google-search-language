@@ -78,6 +78,17 @@ async function loadCheckboxState() {
     "vi": "lang_vi"
   };
 
+  var dark_mode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var color, color_hover;
+  if (dark_mode){
+    color = "#9e9e9e";
+    color_hover = "#ddd";
+  }
+  else {
+    color = "#5e5e5e";
+    color_hover = "#5e5e5e";
+  }
+
   if (language_dict) {
     for (const [lang, lang_name] of Object.entries(language_dict)) {
       let link = document.createElement("a");
@@ -86,7 +97,7 @@ async function loadCheckboxState() {
       let newUrl = replaceUrlParam(currentUrl, code);
       link.href = newUrl;
       
-      link.style.color = "#9e9e9e";
+      link.style.color = color;
       link.style.display = "inline-block";
       link.style.position = "relative";
       link.style.paddingTop = "0";
@@ -96,8 +107,8 @@ async function loadCheckboxState() {
       link.style.marginLeft = "12px";
       link.style.lineHeight = "22px";
       link.style.cursor = "pointer";
-      link.onmouseover = function() {link.style.color = "#ddd";}
-      link.onmouseleave = function() {link.style.color = "#9e9e9e";}
+      link.onmouseover = function() {link.style.color = color_hover;}
+      link.onmouseleave = function() {link.style.color = color;}
       
       let xpath = "//*[@id='hdtbMenus']/div";
       let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);

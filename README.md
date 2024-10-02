@@ -10,7 +10,6 @@ For regular user, you can find it on [Chrome Web Store](https://chromewebstore.g
 
 ## TODO
 
-* Adjust button color on bright theme
 * Launch on all google search urls (menifest.json)
 * Adjust button's CSS
 * Detect if current search language is set
