@@ -13,7 +13,6 @@ For regular user, you can find it on [Chrome Web Store](https://chromewebstore.g
 * Adjust button color on bright theme
 * Launch on all google search urls (menifest.json)
 * Adjust button's CSS
-* Check if the language parameter exist before append
 * Detect if current search language is set
 * Better looks for option
 * Interchangable order

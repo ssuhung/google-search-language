@@ -1,3 +1,17 @@
+function replaceUrlParam(url, paramValue) {
+  if (paramValue == null) {
+    paramValue = "";
+  }
+  var pattern = new RegExp("\\b(lr=).*?(&|#|$)");
+  if (url.search(pattern) >= 0) {
+    return url.replace(pattern, "$1" + paramValue + "$2");
+  }
+  url = url.replace(/[?#]$/, "");
+  return (
+    url + (url.indexOf("?") > 0 ? "&" : "?") + "lr" + "=" + paramValue
+  );
+}
+
 function getLanguageOn() {
   return new Promise((resolve, reject) => {
       chrome.storage.sync.get("languages", function(result) {
@@ -69,7 +83,7 @@ async function loadCheckboxState() {
       let link = document.createElement("a");
       link.innerHTML = lang_name;
       let code = language_to_code[lang];
-      let newUrl = currentUrl + `&lr=${code}`;
+      let newUrl = replaceUrlParam(currentUrl, code);
       link.href = newUrl;
       
       link.style.color = "#9e9e9e";
