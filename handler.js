@@ -1,3 +1,52 @@
+const language_to_code = {
+  "af": "lang_af",
+  "ar": "lang_ar",
+  "hy": "lang_hy",
+  "be": "lang_be",
+  "bg": "lang_bg",
+  "ca": "lang_ca",
+  "zh-CN": "lang_zh-CN",
+  "zh-TW": "lang_zh-TW",
+  "hr": "lang_hr",
+  "cs": "lang_cs",
+  "da": "lang_da",
+  "nl": "lang_nl",
+  "en": "lang_en",
+  "eo": "lang_eo",
+  "et": "lang_et",
+  "tl": "lang_tl",
+  "fi": "lang_fi",
+  "fr": "lang_fr",
+  "de": "lang_de",
+  "el": "lang_el",
+  "iw": "lang_iw",
+  "hi": "lang_hi",
+  "hu": "lang_hu",
+  "is": "lang_is",
+  "id": "lang_id",
+  "it": "lang_it",
+  "ja": "lang_ja",
+  "ko": "lang_ko",
+  "lv": "lang_lv",
+  "lt": "lang_lt",
+  "no": "lang_no",
+  "fa": "lang_fa",
+  "pl": "lang_pl",
+  "pt": "lang_pt",
+  "ro": "lang_ro",
+  "ru": "lang_ru",
+  "sr": "lang_sr",
+  "sk": "lang_sk",
+  "sl": "lang_sl",
+  "es": "lang_es",
+  "sw": "lang_sw",
+  "sv": "lang_sv",
+  "th": "lang_th",
+  "tr": "lang_tr",
+  "uk": "lang_uk",
+  "vi": "lang_vi"
+};
+
 function replaceUrlParam(url, paramValue) {
   if (paramValue == null) {
     paramValue = "";
@@ -24,59 +73,9 @@ function getLanguageOn() {
   });
 }
 
-// Wait until the DOM is fully loaded
-// document.addEventListener("DOMContentLoaded", function() {
 async function loadCheckboxState() {
   let language_dict = await getLanguageOn();
   let currentUrl = window.location.href;
-  const language_to_code = {
-    "af": "lang_af",
-    "ar": "lang_ar",
-    "hy": "lang_hy",
-    "be": "lang_be",
-    "bg": "lang_bg",
-    "ca": "lang_ca",
-    "zh-CN": "lang_zh-CN",
-    "zh-TW": "lang_zh-TW",
-    "hr": "lang_hr",
-    "cs": "lang_cs",
-    "da": "lang_da",
-    "nl": "lang_nl",
-    "en": "lang_en",
-    "eo": "lang_eo",
-    "et": "lang_et",
-    "tl": "lang_tl",
-    "fi": "lang_fi",
-    "fr": "lang_fr",
-    "de": "lang_de",
-    "el": "lang_el",
-    "iw": "lang_iw",
-    "hi": "lang_hi",
-    "hu": "lang_hu",
-    "is": "lang_is",
-    "id": "lang_id",
-    "it": "lang_it",
-    "ja": "lang_ja",
-    "ko": "lang_ko",
-    "lv": "lang_lv",
-    "lt": "lang_lt",
-    "no": "lang_no",
-    "fa": "lang_fa",
-    "pl": "lang_pl",
-    "pt": "lang_pt",
-    "ro": "lang_ro",
-    "ru": "lang_ru",
-    "sr": "lang_sr",
-    "sk": "lang_sk",
-    "sl": "lang_sl",
-    "es": "lang_es",
-    "sw": "lang_sw",
-    "sv": "lang_sv",
-    "th": "lang_th",
-    "tr": "lang_tr",
-    "uk": "lang_uk",
-    "vi": "lang_vi"
-  };
 
   var dark_mode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   var color, color_hover;
@@ -120,4 +119,3 @@ async function loadCheckboxState() {
 }
 
 loadCheckboxState();
-//   });
