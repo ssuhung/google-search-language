@@ -77,45 +77,35 @@ async function loadCheckboxState() {
   let language_dict = await getLanguageOn();
   let currentUrl = window.location.href;
 
-  var dark_mode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var color, color_hover;
-  if (dark_mode){
-    color = "#9e9e9e";
-    color_hover = "#ddd";
-  }
-  else {
-    color = "#5e5e5e";
-    color_hover = "#5e5e5e";
-  }
+  const original = [...document.querySelectorAll('[jsname="xl07Ob"]')]
+  .at(-1)
+  ?.querySelector(':nth-child(5)');
 
   if (language_dict) {
     for (const [lang, lang_name] of Object.entries(language_dict)) {
-      let link = document.createElement("a");
-      link.innerHTML = lang_name;
-      let code = language_to_code[lang];
-      let newUrl = replaceUrlParam(currentUrl, code);
-      link.href = newUrl;
-      
-      link.style.color = color;
-      link.style.display = "inline-block";
-      link.style.position = "relative";
-      link.style.paddingTop = "0";
-      link.style.paddingBottom = "0";
-      link.style.paddingRight = "12px";
-      link.style.paddingLeft = "12px";
-      link.style.marginLeft = "12px";
-      link.style.lineHeight = "22px";
-      link.style.cursor = "pointer";
-      link.onmouseover = function() {link.style.color = color_hover;}
-      link.onmouseleave = function() {link.style.color = color;}
-      
-      let xpath = "//*[@id='hdtbMenus']/div";
-      let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-      let element = result.singleNodeValue;
-      
-      element.appendChild(link);
+      const clone = original.cloneNode(true);
+
+      clone.firstChild.firstChild.text = lang_name;
+      clone.firstChild.firstChild.href = replaceUrlParam(currentUrl, language_to_code[lang]);
+
+      original.parentNode.insertBefore(clone, original.nextSibling);
+
     }
   }
 }
 
-loadCheckboxState();
+function waitForMenuAndInsertButtons() {
+  const xpath = "//*[@jsname='xl07Ob'][2]";
+  const observer = new MutationObserver(() => {
+    const result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+    const element = result.singleNodeValue;
+    if (element) {
+      observer.disconnect();
+      loadCheckboxState();
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+waitForMenuAndInsertButtons();
